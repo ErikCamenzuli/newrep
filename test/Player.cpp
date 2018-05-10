@@ -10,10 +10,10 @@ Player::Player()
 }
 
 Player::Player(glm::vec2 * pos)
-{
+{	//texture
 	m_texture = new aie::Texture("../bin/textures/ship.png");
 	m_pos = pos;
-
+	//amount of bullets
 	for (int i = 0; i < 2500; ++i)
 	{
 		m_bullet = new Bullet();
@@ -30,12 +30,12 @@ Player::~Player()
 	delete m_texture;
 	delete m_bullet;
 }
-
+//current player position
 float Player::m_posx()
 {
 	return m_pos->x;
 }
-
+//current player position
 float Player::m_posy()
 {
 	return m_pos->y;
@@ -45,22 +45,25 @@ void Player::Update(float deltaTime, aie::Input* input)
 {		//Player fire key SPACE key
 	if (input->isKeyDown(aie::INPUT_KEY_SPACE))
 	{
+		//generating new bullets then pushing the active ones to inactive
 		Bullet *newBullet;
 		newBullet = m_INactiveBullets.at(m_INactiveBullets.size() - 1);
 		newBullet->BulletPosX = m_pos->x;
 		newBullet->BulletPosY = m_pos->y;
 		m_activeBullets.push_back(newBullet);
 		m_INactiveBullets.pop_back();
+		//showing in iostream the active and inactive
 		std::cout << "inactive: " << m_activeBullets.size() << std::endl;
 		std::cout << "active: " << m_INactiveBullets.size() << std::endl;
 
 
 	}
-
+	//amount of bullets
 	if (m_activeBullets.size() >= 2500)
 	{
 		for (auto it = m_activeBullets.begin(); it != m_activeBullets.end(); ++it)
 		{
+			//current bullets and speed with the poisitioning of the bullet
 			Bullet* usedBullet;
 			if ((*it)->BulletPosY >= 720)
 			{
@@ -98,7 +101,7 @@ void Player::Update(float deltaTime, aie::Input* input)
 	}
 
 }
-
+//rendering the players ship
 void Player::Draw(aie::Renderer2D * spriteBatch)
 {
 	spriteBatch->drawSprite(m_texture, m_pos->x, m_pos->y);
