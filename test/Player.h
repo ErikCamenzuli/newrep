@@ -23,9 +23,12 @@ public:
 
 	void Update(float deltaTime, aie::Input* input);
 	void Draw(aie::Renderer2D* spriteBatch);
+	//linear function
+	float linearfunct(float x);
 
 
 private:
+
 	glm::vec2* m_pos;
 	aie::Texture* m_texture;
 	std::vector<Bullet*>m_activeBullets;

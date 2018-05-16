@@ -21,7 +21,7 @@ bool testApp::startup() {
 
 	// TODO: remember to change this when redistributing a build!
 	// the following path would be used instead: "./font/consolas.ttf"
-	m_font = new aie::Font("../bin/font/consolas.ttf", 12);
+	m_font = new aie::Font("../bin/font/consolas.ttf", 0);
 	P1 = new Player(new glm::vec2(100.0f, 200.0f));
 	return true;
 }
@@ -54,6 +54,7 @@ void testApp::draw() {
 	ImGui::Begin("Player GUI");
 	ImGui::Text("Player Position X: (%1.0F)", P1->m_posx());
 	ImGui::Text("Player Position Y: (%1.0F)", P1->m_posy());
+	ImGui::Text("Press Esc To Quit");
 	ImGui::End();
 
 	// draw your stuff here!

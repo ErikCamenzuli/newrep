@@ -4,6 +4,7 @@
 #include <Input.h>
 #include "Bullet.h"
 #include <iostream>
+#include <math.h>
 
 Player::Player()
 {
@@ -42,7 +43,15 @@ float Player::m_posy()
 }
 
 void Player::Update(float deltaTime, aie::Input* input)
-{		//Player fire key SPACE key
+{	//calling lin
+	int timer;
+	timer = deltaTime +2;
+	m_pos->x += timer;
+	//m_pos->y = linearfunct(m_pos->x);
+	//sin/cos/tan
+	m_pos->y = tan(m_pos->x);
+
+	//Player fire key SPACE key
 	if (input->isKeyDown(aie::INPUT_KEY_SPACE))
 	{
 		//generating new bullets then pushing the active ones to inactive
@@ -112,4 +121,11 @@ void Player::Draw(aie::Renderer2D * spriteBatch)
 	}
 
 }
+
+float Player::linearfunct(float x)
+{
+	return x * 0.5f;
+}
+
+
 
